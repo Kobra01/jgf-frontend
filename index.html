@@ -23,6 +23,14 @@
 
         <!-- Content Area -->
         <div id="main">
+
+            <div class="card">
+                <button onclick="start()">START</button>
+                <button onclick="stop()">STOP</button>
+                
+                <p id="ausgabe"></p>
+            </div>
+
             <a class="icard success" href="detail.html">
                 <img
                     class="circle icon"
@@ -56,22 +64,6 @@
                     <p class="sub">Petershagen</p>
                     <p class="sub-right">1,2km</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <h1>Test für Koordinaten im Browser</h1>
-                <h2>Test für einmalige Standortabfrage:</h2>
-                <button onclick="starttest()">AKTUALISIEREN</button>
-            
-                <p id="ausgabe"></p>
-            
-                <br><hr><br>
-            
-                <h2>Test für dauerhafte Standortabfrage:</h2>
-                <button onclick="starttest2()">START</button>
-                <button onclick="stop()">STOP</button>
-                
-                <p id="ausgabe2"></p>
             </div>
 
             <div class="card spinner"></div>
