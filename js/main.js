@@ -29,8 +29,8 @@ function start() {
 }
 
 function evCoords(position) {
-    if (fetched == False) {
-        fetched = True;
+    if (fetched == false) {
+        fetched = true;
         fetchObjects(position);
     }
     a1 = new Date(position.timestamp);
@@ -62,12 +62,16 @@ function fetchObjects(position) {
       
     fetch(url, {
         method: 'POST', // or 'PUT'
-        mode: "cors",
-        body: JSON.stringify(data), // data can be `string` or {object}!
+        mode: "no-cors",
+        body: JSON.stringify(data), // data can be `string` or {object}
+        redirect: 'follow',
         headers:{
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
+    }).then(res => {
+        console.log(res);
+        res.json();
+    })
     .then(response =>  {
         console.log('Success:', JSON.stringify(response));
     })
@@ -79,4 +83,4 @@ function fetchObjects(position) {
 
 var ausgabe2 = document.getElementById('ausgabe');
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
-var fetched = False;
+var fetched = false;
