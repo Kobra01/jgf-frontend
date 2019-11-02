@@ -17,7 +17,6 @@ function showError(error) {
 
 function start() {
 
-    var ausgabe2 = document.getElementById('ausgabe');
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(evCoords, showError, {
             enableHighAccuracy: true, 
@@ -49,3 +48,6 @@ function evCoords(position) {
 function stop() {
     navigator.geolocation.clearWatch();
 }
+
+
+var ausgabe2 = document.getElementById('ausgabe');
