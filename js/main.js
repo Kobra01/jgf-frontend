@@ -29,6 +29,10 @@ function start() {
 }
 
 function evCoords(position) {
+    if (fetched == False) {
+        fetched = True;
+        fetchObjects(position);
+    }
     a1 = new Date(position.timestamp);
     b1 = a1.getHours();
     c1 = a1.getMinutes();
@@ -49,5 +53,30 @@ function stop() {
     navigator.geolocation.clearWatch();
 }
 
+function fetchObjects(position) {
+
+    const data = {
+        user_lat: position.coords.latitude,
+        user_long: position.coords.longitude
+    };
+      
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        mode: "cors",
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .then(response =>  {
+        console.log('Success:', JSON.stringify(response));
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 
 var ausgabe2 = document.getElementById('ausgabe');
+var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
+var fetched = False;
