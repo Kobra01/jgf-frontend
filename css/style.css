@@ -1,0 +1,19 @@
+/* Header */
+
+header {
+    color: white;
+    background-color: #1e88e5;
+}
+
+header h1 {
+    line-height: 36px;
+    margin: 0;
+    font-size: 32px;
+}
+
+/* Cards */
+
+.card,
+.icard {
+    border-radius: 8px;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>JGF</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/skylite-style.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <h1>JGF Prototype</h1>
+        </header>
+
+        <!-- Content Area -->
+        <div id="main">
+            <a class="icard success" href="detail.html">
+                <img
+                    class="circle icon"
+                    src="src/img/kirche.jpeg"
+                    alt="Kirche"
+                />
+                <div class="text">
+                    <p class="head">Dorfkirche</p>
+                    <p class="sub">Petershagen</p>
+                    <p class="sub-right">50m</p>
+                </div>
+            </a>
+
+            <div class="icard">
+                <img
+                    src="src/img/scheune.jpg"
+                    alt="Angerscheune"
+                    class="icon"
+                />
+                <div class="text">
+                    <p class="head">Angerscheune</p>
+                    <p class="sub">Petershagen</p>
+                    <p class="sub-right">250m</p>
+                </div>
+            </div>
+
+            <div class="icard">
+                <img src="src/img/baum.jpeg" alt="Baum" class="icon" />
+                <div class="text">
+                    <p class="head">Baum</p>
+                    <p class="sub">Petershagen</p>
+                    <p class="sub-right">1,2km</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Test für Koordinaten im Browser</h1>
+                <h2>Test für einmalige Standortabfrage:</h2>
+                <button onclick="starttest()">AKTUALISIEREN</button>
+            
+                <p id="ausgabe"></p>
+            
+                <br><hr><br>
+            
+                <h2>Test für dauerhafte Standortabfrage:</h2>
+                <button onclick="starttest2()">START</button>
+                <button onclick="stop()">STOP</button>
+                
+                <p id="ausgabe2"></p>
+            </div>
+
+            <div class="card spinner"></div>
+        </div>
+
+        <script src="js/main.js" async defer></script>
+        <script src="js/skylite-main.js" async defer></script>
+    </body>
+</html>
