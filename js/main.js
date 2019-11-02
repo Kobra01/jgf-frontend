@@ -46,8 +46,11 @@ function evCoords(position) {
         + "<br>Höhe: " + position.coords.altitude
         + "<br>Höhengenauigkeit: " + position.coords.altitudeAccuracy
         + "<br>Richtung: " + position.coords.heading
-        + "<br>Geschwindigkeit: " + position.coords.speed
-        + "<br>Data" + objects;
+        + "<br>Geschwindigkeit: " + position.coords.speed;
+
+        if (typeof objects !== "undefined") {
+            ausgabe2.innerHTML = "Data: " + objects;
+        }
 }
 
 function stop() {
