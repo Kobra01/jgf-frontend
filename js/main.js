@@ -33,6 +33,16 @@ function evCoords(position) {
         fetched = true;
         fetchObjects(position);
     }
+
+    if (typeof objects !== "undefined") {
+        while (listDiv.firstChild) {
+            listDiv.removeChild(listDiv.firstChild);
+        }
+        objects.forEach(obj => {
+            listDiv.appendChild(createCard(obj));
+        });
+    }
+
     a1 = new Date(position.timestamp);
     b1 = a1.getHours();
     c1 = a1.getMinutes();
@@ -47,10 +57,7 @@ function evCoords(position) {
         + "<br>Höhengenauigkeit: " + position.coords.altitudeAccuracy
         + "<br>Richtung: " + position.coords.heading
         + "<br>Geschwindigkeit: " + position.coords.speed;
-
-        if (typeof objects !== "undefined") {
-            ausgabe2.innerHTML = "Data: " + objects;
-        }
+        
 }
 
 function stop() {
@@ -75,10 +82,7 @@ function fetchObjects(position) {
         headers:{
             'Content-Type': 'application/json'
         }
-    }).then(res => {
-        console.log(res);
-        res.json();
-    })
+    }).then(res => res.json())
     .then(response =>  {
         objects = response.objects;
         console.log('Success:', JSON.stringify(response));
@@ -88,7 +92,36 @@ function fetchObjects(position) {
     });
 }
 
+function createCard(obj) {
+    var tempCard = document.createElement('div');
+    var tempText = document.createElement('div');
+    var tempHead = document.createElement('p');
+    var tempSub = document.createElement('p');
+    var tempSubRight = document.createElement('p');
+    tempCard.classList.add('icard');
+    tempText.classList.add('text');
+    tempHead.classList.add('head');
+    tempSub.classList.add('sub');
+    tempSubRight.classList.add('right');
 
+    var tempHeadText = document.createTextNode(obj.name);
+    var tempSubText = document.createTextNode(obj.longitude);
+    var tempSubRightText = document.createTextNode(obj.latitude);
+
+    tempHead.appendChild(tempHeadText);
+    tempSub.appendChild(tempSubText);
+    tempSubRight.appendChild(tempSubRightText);
+
+    tempText.appendChild(tempHead);
+    tempText.appendChild(tempSub);
+    tempText.appendChild(tempSubRight);
+
+    tempCard.appendChild(tempText);
+    return tempCard;
+}
+
+
+var listDiv = document.getElementById('list');
 var ausgabe2 = document.getElementById('ausgabe');
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
 var fetched = false;
