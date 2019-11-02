@@ -46,7 +46,8 @@ function evCoords(position) {
         + "<br>Höhe: " + position.coords.altitude
         + "<br>Höhengenauigkeit: " + position.coords.altitudeAccuracy
         + "<br>Richtung: " + position.coords.heading
-        + "<br>Geschwindigkeit: " + position.coords.speed;
+        + "<br>Geschwindigkeit: " + position.coords.speed
+        + "<br>Data" + objects;
 }
 
 function stop() {
@@ -61,10 +62,13 @@ function fetchObjects(position) {
     };
       
     fetch(url, {
-        method: 'POST', // or 'PUT'
-        mode: "no-cors",
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // no-referrer, *client
         body: JSON.stringify(data), // data can be `string` or {object}
-        redirect: 'follow',
         headers:{
             'Content-Type': 'application/json'
         }
@@ -73,6 +77,7 @@ function fetchObjects(position) {
         res.json();
     })
     .then(response =>  {
+        objects = response.objects;
         console.log('Success:', JSON.stringify(response));
     })
     .catch(error => {
@@ -84,3 +89,4 @@ function fetchObjects(position) {
 var ausgabe2 = document.getElementById('ausgabe');
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
 var fetched = false;
+var objects;
