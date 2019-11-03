@@ -41,6 +41,7 @@ function evCoords(position) {
         objects.forEach(obj => {
             obj.distance = calcDistance(obj, position);
         });
+        objects.sort(sortByDistance(a, b));
         objects.forEach(obj => {
             listDiv.appendChild(createCard(obj));
         });
@@ -147,6 +148,10 @@ function calcDistance(obj, position) {
     var distance = Math.sqrt(Math.pow(distanceLatInMeter, 2) + Math.pow(distanceLongInMeter, 2));
 
     return Math.round(distance);
+}
+
+function sortByDistance(a, b) {
+    return a.distance - b.distance;
 }
 
 var distance_const = 111120;
