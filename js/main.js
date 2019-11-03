@@ -94,18 +94,23 @@ function fetchObjects(position) {
 
 function createCard(obj) {
     var tempCard = document.createElement('div');
+    var tempImg = document.createElement('img');
     var tempText = document.createElement('div');
     var tempHead = document.createElement('p');
     var tempSub = document.createElement('p');
     var tempSubRight = document.createElement('p');
     tempCard.classList.add('icard');
+    tempImg.classList.add('circle');
+    tempImg.classList.add('icon');
+    tempImg.alt = 'Bild';
     tempText.classList.add('text');
     tempHead.classList.add('head');
     tempSub.classList.add('sub');
-    tempSubRight.classList.add('right');
+    tempSubRight.classList.add('sub-right');
 
+    tempImg.src = imgBasePath + obj.img_url;
     var tempHeadText = document.createTextNode(obj.name);
-    var tempSubText = document.createTextNode(obj.longitude);
+    var tempSubText = document.createTextNode(obj.town);
     var tempSubRightText = document.createTextNode(obj.latitude);
 
     tempHead.appendChild(tempHeadText);
@@ -116,6 +121,7 @@ function createCard(obj) {
     tempText.appendChild(tempSub);
     tempText.appendChild(tempSubRight);
 
+    tempCard.appendChild(tempImg);
     tempCard.appendChild(tempText);
     return tempCard;
 }
@@ -124,5 +130,6 @@ function createCard(obj) {
 var listDiv = document.getElementById('list');
 var ausgabe2 = document.getElementById('ausgabe');
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
+var imgBasePath = "https://www.mks-software.de/jgf/src/img/";
 var fetched = false;
 var objects;
