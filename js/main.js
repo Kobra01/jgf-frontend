@@ -41,7 +41,7 @@ function evCoords(position) {
         objects.forEach(obj => {
             obj.distance = calcDistance(obj, position);
         });
-        objects.sort(sortByDistance(a, b));
+        objects.sort(sortByDistance);
         objects.forEach(obj => {
             listDiv.appendChild(createCard(obj));
         });
