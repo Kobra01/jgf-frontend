@@ -114,7 +114,7 @@ function createCard(obj) {
     tempImg.src = imgBasePath + obj.img_url;
     var tempHeadText = document.createTextNode(obj.name);
     var tempSubText = document.createTextNode(obj.town);
-    var tempSubRightText = document.createTextNode(obj.distance);
+    var tempSubRightText = document.createTextNode(obj.distance + "m");
 
     tempHead.appendChild(tempHeadText);
     tempSub.appendChild(tempSubText);
@@ -142,7 +142,7 @@ function calcDistance(obj, position) {
 
     var distance = Math.sqrt(Math.pow(distanceLatInMeter, 2) + Math.pow(distanceLongInMeter, 2));
 
-    return distance;
+    return Math.round(distance);
 }
 
 var distance_const = 111120;
