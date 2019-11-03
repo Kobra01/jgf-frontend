@@ -32,6 +32,10 @@ function evCoords(position) {
     if (fetched == false) {
         fetched = true;
         fetchObjects(position);
+        oldpos.latitude = position.coords.latitude;
+        oldpos.longitude = position.coords.longitude;
+    } else if (calcDistance(oldpos, position) > 500) {
+        fetched = false;
     }
 
     if (typeof objects !== "undefined") {
@@ -158,6 +162,7 @@ function sortByDistance(a, b) {
     return a.distance - b.distance;
 }
 
+var oldpos;
 var distance_const = 111120;
 var listDiv = document.getElementById('list');
 var output;
