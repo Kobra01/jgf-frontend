@@ -42,6 +42,13 @@ function evCoords(position) {
         while (listDiv.firstChild) {
             listDiv.removeChild(listDiv.firstChild);
         }
+        if (position.coords.accuracy > 50) {
+            var warningCard = document.createElement('div');
+            warningCard.classList.add('card');
+            warningCard.classList.add('warning');
+            warningCard.innerText = "Ihr Standort ist nicht genau";
+            listDiv.appendChild(warningCard);
+        }
         objects.forEach(obj => {
             obj.distance = calcDistance(obj, position);
         });
@@ -162,7 +169,7 @@ function sortByDistance(a, b) {
     return a.distance - b.distance;
 }
 
-var oldpos;
+var oldpos = {};
 var distance_const = 111120;
 var listDiv = document.getElementById('list');
 var output;
