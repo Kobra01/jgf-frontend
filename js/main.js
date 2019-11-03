@@ -46,20 +46,24 @@ function evCoords(position) {
         });
     }
 
-    a1 = new Date(position.timestamp);
-    b1 = a1.getHours();
-    c1 = a1.getMinutes();
-    d1 = a1.getSeconds();
-    zeit1 = b1+':'+c1+':'+d1;
-    ausgabe2.innerHTML = "Test Erfolgreich:<br>"
-        + "<br>Zeitpunkt: " + zeit1
-        + "<br>Breite: " + position.coords.latitude 
-        + "<br>Länge: " + position.coords.longitude
-        + "<br>Genauigkeit: " + position.coords.accuracy
-        + "<br>Höhe: " + position.coords.altitude
-        + "<br>Höhengenauigkeit: " + position.coords.altitudeAccuracy
-        + "<br>Richtung: " + position.coords.heading
-        + "<br>Geschwindigkeit: " + position.coords.speed;
+    if (debug) {
+
+        a1 = new Date(position.timestamp);
+        b1 = a1.getHours();
+        c1 = a1.getMinutes();
+        d1 = a1.getSeconds();
+        zeit1 = b1+':'+c1+':'+d1;
+        output.innerHTML = "Test Erfolgreich:<br>"
+            + "<br>Zeitpunkt: " + zeit1
+            + "<br>Breite: " + position.coords.latitude 
+            + "<br>Länge: " + position.coords.longitude
+            + "<br>Genauigkeit: " + position.coords.accuracy
+            + "<br>Höhe: " + position.coords.altitude
+            + "<br>Höhengenauigkeit: " + position.coords.altitudeAccuracy
+            + "<br>Richtung: " + position.coords.heading
+            + "<br>Geschwindigkeit: " + position.coords.speed;
+        
+    }
         
 }
 
@@ -147,8 +151,15 @@ function calcDistance(obj, position) {
 
 var distance_const = 111120;
 var listDiv = document.getElementById('list');
-var ausgabe2 = document.getElementById('ausgabe');
+var output;
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
 var imgBasePath = "https://www.mks-software.de/jgf/src/img/";
 var fetched = false;
 var objects;
+
+if (typeof debug !== "undefined") {
+    output = document.getElementById('output');
+} else {
+    start();
+    var debug = false;
+}
