@@ -119,7 +119,11 @@ function createCard(obj) {
     tempImg.src = imgBasePath + obj.img_url;
     var tempHeadText = document.createTextNode(obj.name);
     var tempSubText = document.createTextNode(obj.town);
-    var tempSubRightText = document.createTextNode(obj.distance + "m");
+    if (obj.distance >= 1000) {
+        var tempSubRightText = document.createTextNode((obj.distance / 1000).toFixed(2) + "km");
+    } else {
+        var tempSubRightText = document.createTextNode(obj.distance + "m");
+    }
 
     tempHead.appendChild(tempHeadText);
     tempSub.appendChild(tempSubText);
