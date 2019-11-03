@@ -120,19 +120,19 @@ function createCard(obj) {
     var tempSubRight = document.createElement('p');
     tempCard.classList.add('icard');
     switch (obj.size) {
-        case 1:
+        case "1":
             if (obj.distance < 25) {
-                tempCard.classList.add('success')
+                tempCard.classList.add('success');
             }
             break;
-        case 2:
+        case "2":
             if (obj.distance < 70) {
-                tempCard.classList.add('success')
+                tempCard.classList.add('success');
             }
             break;
-        case 3:
+        case "3":
             if (obj.distance < 200) {
-                tempCard.classList.add('success')
+                tempCard.classList.add('success');
             }
             break;
         default:
