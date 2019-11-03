@@ -119,6 +119,25 @@ function createCard(obj) {
     var tempSub = document.createElement('p');
     var tempSubRight = document.createElement('p');
     tempCard.classList.add('icard');
+    switch (obj.size) {
+        case 1:
+            if (obj.distance < 25) {
+                tempCard.classList.add('success')
+            }
+            break;
+        case 2:
+            if (obj.distance < 70) {
+                tempCard.classList.add('success')
+            }
+            break;
+        case 3:
+            if (obj.distance < 200) {
+                tempCard.classList.add('success')
+            }
+            break;
+        default:
+            break;
+    }
     tempImg.classList.add('circle');
     tempImg.classList.add('icon');
     tempImg.alt = 'Bild';
