@@ -39,6 +39,9 @@ function evCoords(position) {
             listDiv.removeChild(listDiv.firstChild);
         }
         objects.forEach(obj => {
+            obj.distance = calcDistance(obj, position);
+        });
+        objects.forEach(obj => {
             listDiv.appendChild(createCard(obj));
         });
     }
@@ -111,7 +114,7 @@ function createCard(obj) {
     tempImg.src = imgBasePath + obj.img_url;
     var tempHeadText = document.createTextNode(obj.name);
     var tempSubText = document.createTextNode(obj.town);
-    var tempSubRightText = document.createTextNode(obj.latitude);
+    var tempSubRightText = document.createTextNode(obj.distance);
 
     tempHead.appendChild(tempHeadText);
     tempSub.appendChild(tempSubText);
@@ -126,7 +129,23 @@ function createCard(obj) {
     return tempCard;
 }
 
+function calcDistance(obj, position) {
+    
+    var latInMeter = distance_const;
+    var longInMeter = distance_const * Math.cos(position.coords.latitude * Math.PI / 180);
 
+    var distanceLat = Math.abs(obj.latitude - position.coords.latitude);
+    var distanceLong = Math.abs(obj.longitude - position.coords.longitude);
+
+    var distanceLatInMeter = distanceLat * latInMeter;
+    var distanceLongInMeter = distanceLong * longInMeter;
+
+    var distance = Math.sqrt(Math.pow(distanceLatInMeter, 2) + Math.pow(distanceLongInMeter, 2));
+
+    return distance;
+}
+
+var distance_const = 111120;
 var listDiv = document.getElementById('list');
 var ausgabe2 = document.getElementById('ausgabe');
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
