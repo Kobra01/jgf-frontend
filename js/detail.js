@@ -67,9 +67,40 @@ function showDetails(details, infos) {
 
 
     infos.forEach(inf => {
-        // listDiv.appendChild(createCard(inf));
+        listDiv.appendChild(createCard(inf));
     });
+}
 
+function createCard(info) {
+    var tempCard = document.createElement('div');
+    var headline = document.createElement('h3');
+    var infotext = document.createElement('p');
+    var infosource = document.createElement('p');
+    var creator = document.createElement('p');
+
+    tempCard.classList.add('card');
+    headline.innerText(info.type);
+    if (info.checked != 1) {
+        headline.innerText = info.type + " (?)";
+    }
+    if (info.further_info.startsWith("http")) {
+        infotext.innerHTML = "<br>" + info.text + '<br><a href="' + info.further_info + '" style="text-decoration: none">mehr dazu...</a>';
+    } else {
+        infotext.innerHTML = "<br>" + info.text + "<br><br>mehr dazu: " + info.further_info;
+    }
+    if (info.source.startsWith("http")) {
+        infosource.innerHTML = '<br>Quelle: <a href="' + info.source + '">' + info.source + '</a><br>';
+    } else {
+        infosource.innerHTML = "<br>Quelle: " + info.source + "<br>";
+    }
+    creator.innerHTML = "<br><i>Von: " + info.firstname + info.lastname.substring(0, 1); + "</i>";
+
+    tempCard.appendChild(headline);
+    tempCard.appendChild(infotext);
+    tempCard.appendChild(infosource);
+    tempCard.appendChild(creator);
+
+    return tempCard;
 }
 
 
