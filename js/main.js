@@ -205,7 +205,7 @@ var listDiv = document.getElementById('list');
 var output;
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
 var imgBasePath = "https://www.mks-software.de/jgf/src/img/";
-var detailBasePath = "https://www.mks-software.de/jgf/frontend-beta/detail.html";
+var detailBasePath = "detail.html";
 var fetched = false;
 var objects;
 
