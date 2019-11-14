@@ -32,7 +32,7 @@ function fetchDetails(obj_id) {
         }
     }).then(res => res.json())
     .then(response =>  {
-        // objects = response.objects;
+        showDetails(response.details, response.information);
         console.log('Success:', JSON.stringify(response));
     })
     .catch(error => {
@@ -40,6 +40,42 @@ function fetchDetails(obj_id) {
     });
 }
 
+function showDetails(details, infos) {
 
+    while (listDiv.firstChild) {
+        listDiv.removeChild(listDiv.firstChild);
+    }
+
+    var imgCard = document.createElement('div');
+    var img = document.createElement('a');
+    var infoCard = document.createElement('div');
+    var objectName = document.createElement('h3');
+    var infoText = document.createElement('p');
+    imgCard.classList.add('card');
+    img.alt = 'Bild';
+    img.src = imgBasePath + details.img_url;
+    img.style.width = '100%';
+    infoCard.classList.add('card');
+    objectName.innerText = details.name;
+    infoText.innerHTML = "<br>" + details.short_text + "<br><br>Eingereicht: " + details.created;
+
+    infoCard.appendChild(objectName);
+    infoCard.appendChild(infoText);
+    imgCard.appendChild(img);
+    listDiv.appendChild(imgCard);
+    listDiv.appendChild(infoCard);
+
+
+    infos.forEach(inf => {
+        // listDiv.appendChild(createCard(inf));
+    });
+
+}
+
+
+var listDiv = document.getElementById('list');
 var url = "https://www.mks-software.de/jgf/beta/get_details.php";
+var imgBasePath = "https://www.mks-software.de/jgf/src/img/";
 var urlValues = new getUrlValues(location.search);
+
+fetchDetails(urlValues['o']);
