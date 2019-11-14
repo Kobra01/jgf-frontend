@@ -79,9 +79,10 @@ function createCard(info) {
     var creator = document.createElement('p');
 
     tempCard.classList.add('card');
-    headline.innerText(info.type);
     if (info.checked != 1) {
         headline.innerText = info.type + " (?)";
+    } else {
+        headline.innerText = info.type;
     }
     if (info.further_info.startsWith("http")) {
         infotext.innerHTML = "<br>" + info.text + '<br><a href="' + info.further_info + '" style="text-decoration: none">mehr dazu...</a>';
