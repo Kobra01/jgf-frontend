@@ -112,32 +112,43 @@ function fetchObjects(position) {
 }
 
 function createCard(obj) {
-    var tempCard = document.createElement('div');
+    var reached = false
+
+    // define distance for object types
+    switch (obj.size) {
+        case "1":
+            if (obj.distance < 25) {
+                reached = true;
+            }
+            break;
+        case "2":
+            if (obj.distance < 70) {
+                reached = true;
+            }
+            break;
+        case "3":
+            if (obj.distance < 200) {
+                reached = true;
+            }
+            break;
+        default:
+            break;
+    }
+    if (reached) {
+        var tempCard = document.createElement('a');
+        tempCard.classList.add('success');
+
+    } else {
+        var tempCard = document.createElement('div');
+    }
+    tempCard.href = detailBasePath + "?o=" + obj.id;
     var tempImg = document.createElement('img');
     var tempText = document.createElement('div');
     var tempHead = document.createElement('p');
     var tempSub = document.createElement('p');
     var tempSubRight = document.createElement('p');
     tempCard.classList.add('icard');
-    switch (obj.size) {
-        case "1":
-            if (obj.distance < 25) {
-                tempCard.classList.add('success');
-            }
-            break;
-        case "2":
-            if (obj.distance < 70) {
-                tempCard.classList.add('success');
-            }
-            break;
-        case "3":
-            if (obj.distance < 200) {
-                tempCard.classList.add('success');
-            }
-            break;
-        default:
-            break;
-    }
+
     tempImg.classList.add('circle');
     tempImg.classList.add('icon');
     tempImg.alt = 'Bild';
@@ -194,6 +205,7 @@ var listDiv = document.getElementById('list');
 var output;
 var url = "https://www.mks-software.de/jgf/beta/get_objects.php";
 var imgBasePath = "https://www.mks-software.de/jgf/src/img/";
+var detailBasePath = "https://www.mks-software.de/jgf/frontend-beta/detail.html";
 var fetched = false;
 var objects;
 
