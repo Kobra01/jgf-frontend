@@ -47,7 +47,7 @@ function showDetails(details, infos) {
     }
 
     var imgCard = document.createElement('div');
-    var img = document.createElement('a');
+    var img = document.createElement('img');
     var infoCard = document.createElement('div');
     var objectName = document.createElement('h3');
     var infoText = document.createElement('p');
